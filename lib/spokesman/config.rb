@@ -121,5 +121,20 @@ module Spokesman
     def op
       show_log ? 1 : 0
     end
+
+    def query
+      {
+        login:    login,
+        password: password,
+        sender:   sender,
+        translit: translit,
+        charset:  charset,
+        tz:       tz,
+        cost:     cost,
+        fmt:      fmt,
+        err:      err,
+        op:       op
+      }.reject {|key, value| value.nil? }
+    end
   end
 end

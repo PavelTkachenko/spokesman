@@ -285,4 +285,14 @@ describe Spokesman::Config do
     Spokesman.default_config {}
     expect(Spokesman::Config.default.class).to eq(Spokesman::Config)
   end
+
+  it 'builds hash query' do
+    config = Spokesman.config do |config|
+      config.login       = 'spokesman'
+      config.cost_format = 'balance'
+      config.tz          = -2
+    end
+    expect(config.query).to eq({ login: 'spokesman', translit: false, charset: 'utf-8', 
+                                 tz: -2, cost: 3, fmt: 3, err: 0, op: 0 })
+  end
 end
