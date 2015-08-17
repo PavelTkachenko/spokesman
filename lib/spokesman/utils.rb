@@ -1,4 +1,5 @@
 require 'erb'
+
 module Spokesman
   class Utils
     include ERB::Util

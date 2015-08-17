@@ -122,12 +122,20 @@ module Spokesman
       show_log ? 1 : 0
     end
 
+    def trslit
+      translit ? 1 : 0
+    end
+
+    def psw
+      password
+    end
+
     def query
       {
         login:    login,
-        password: password,
+        psw:      psw,
         sender:   sender,
-        translit: translit,
+        translit: trslit,
         charset:  charset,
         tz:       tz,
         cost:     cost,

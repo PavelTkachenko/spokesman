@@ -32,6 +32,13 @@ describe Spokesman::Config do
     end.to raise_error(ArgumentError)
   end
 
+  it 'converts password to psw for API' do
+    config = Spokesman.config do |config|
+      config.password = 'test_psw'
+    end
+    expect(config.psw).to eq('test_psw')
+  end
+
   it 'sets and returns sender properly' do
     config = Spokesman.config do |config|
       config.sender = 'Spokesman'
@@ -73,6 +80,20 @@ describe Spokesman::Config do
         config.translit = :true
       end
     end.to raise_error(ArgumentError)
+  end
+
+  it 'converts false translit in appropriate code for API' do
+    config = Spokesman.config do |config|
+      config.translit = false
+    end
+    expect(config.trslit).to eq(0)
+  end
+
+  it 'converts true translit in appropriate code for API' do
+    config = Spokesman.config do |config|
+      config.translit = true
+    end
+    expect(config.trslit).to eq(1)
   end
 
   it 'sets charset to utf-8 by default' do
@@ -292,7 +313,7 @@ describe Spokesman::Config do
       config.cost_format = 'balance'
       config.tz          = -2
     end
-    expect(config.query).to eq({ login: 'spokesman', translit: false, charset: 'utf-8', 
+    expect(config.query).to eq({ login: 'spokesman', translit: 0, charset: 'utf-8', 
                                  tz: -2, cost: 3, fmt: 3, err: 0, op: 0 })
   end
 end
