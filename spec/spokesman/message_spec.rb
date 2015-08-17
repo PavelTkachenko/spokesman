@@ -29,7 +29,7 @@ describe Spokesman::Message do
 
   it 'makes post request' do
     message = Spokesman::Message.new('sms', number, text)
-    response = message.post
+    response = message.send!
     expect(response).to have_json_type(Integer).at_path('id')
     expect(response).to have_json_type(Integer).at_path('cnt')
   end

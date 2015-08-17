@@ -23,7 +23,7 @@ module Spokesman
       }.merge(params)
     end
 
-    def post
+    def send!
       uri = URI('http://smsc.ru/sys/send.php')
       res = Net::HTTP.post_form(uri, query)
       res.body
