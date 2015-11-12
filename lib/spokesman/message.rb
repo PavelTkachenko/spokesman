@@ -1,5 +1,5 @@
-require "net/http"
-require "uri"
+require 'net/http'
+require 'uri'
 
 module Spokesman
   class Message
@@ -8,7 +8,7 @@ module Spokesman
     def initialize(type, phone, text, config = nil)
       @type   = type
       @phone  = Utils.sanitize_phone(phone)
-      @text   = Utils.urlify(text)
+      @text   = text
       @params = Config.default.query
       unless  config.nil?
         raise UnsupportedConfigError if config.class != Config
